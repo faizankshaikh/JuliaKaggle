@@ -4,23 +4,23 @@ from skimage.io import imread, imsave
 import os
 
 #Set path of data files
-path = "..."
+path = os.path.expanduser('~') + "/workspace/julia"
 
-if not os.path.exists( path + "/trainResized" ):
-	os.makedirs( path + "/trainResized" )
-if not os.path.exists( path + "/testResized" ):
-	os.makedirs( path + "/testResized" )
+if not os.path.exists( path + "/trainResized32" ):
+	os.makedirs( path + "/trainResized32" )
+if not os.path.exists( path + "/testResized32" ):
+	os.makedirs( path + "/testResized32" )
 
 trainFiles = glob.glob( path + "/train/*" )
 for i, nameFile in enumerate(trainFiles):
 	image = imread( nameFile )
-	imageResized = resize( image, (20,20) )	
-	newName = "/".join( nameFile.split("\\")[:-1] ) + "Resized/" + nameFile.split("\\")[-1]	
+	imageResized = resize( image, (32,32) )
+	newName = "/".join( nameFile.split("/")[:-1] ) + "Resized32/" + nameFile.split("/")[-1]	
 	imsave ( newName, imageResized )
 
 testFiles = glob.glob( path + "/test/*" )
 for i, nameFile in enumerate(testFiles):
 	image = imread( nameFile )
-	imageResized = resize( image, (20,20) )	
-	newName = "/".join( nameFile.split("\\")[:-1] ) + "Resized/" + nameFile.split("\\")[-1]	
+	imageResized = resize( image, (32,32) )	
+	newName = "/".join( nameFile.split("/")[:-1] ) + "Resized32/" + nameFile.split("/")[-1]	
 	imsave ( newName, imageResized )
